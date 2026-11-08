@@ -159,7 +159,7 @@ for needle in (
 PY
 
 %build -a
-java --module-path target/jakarta-servlet-api-%{version}.jar --describe-module jakarta.servlet > module-describe.txt
+java --module-path target/jakarta.servlet-api-%{version}.jar --describe-module jakarta.servlet > module-describe.txt
 grep -q '^jakarta.servlet@' module-describe.txt || { cat module-describe.txt; exit 1; }
 grep -q ' automatic$' module-describe.txt || { cat module-describe.txt; exit 1; }
 if grep -q 'jakarta.servlet.api' module-describe.txt; then
@@ -170,7 +170,7 @@ python - <<'PY'
 import struct
 import zipfile
 from pathlib import Path
-jar = Path("target/jakarta-servlet-api-%{version}.jar")
+jar = Path("target/jakarta.servlet-api-%{version}.jar")
 with zipfile.ZipFile(jar) as zf:
     names = set(zf.namelist())
     required = {

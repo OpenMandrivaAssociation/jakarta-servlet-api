@@ -162,7 +162,7 @@ PY
 java --module-path target/jakarta.servlet-api-%{version}.jar --describe-module jakarta.servlet > module-describe.txt
 grep -q '^jakarta.servlet@' module-describe.txt || { cat module-describe.txt; exit 1; }
 grep -q ' automatic$' module-describe.txt || { cat module-describe.txt; exit 1; }
-if grep -q 'jakarta.servlet.api' module-describe.txt; then
+if grep -F -q 'jakarta.servlet.api' module-describe.txt; then
 	cat module-describe.txt
 	exit 1
 fi
